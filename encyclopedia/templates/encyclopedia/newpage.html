@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+New Page
+{% endblock %}
+
+{% block body %}
+{% if alert %}
+  {% for text in alert %}
+   <div class="alert alert-danger" role="alert">
+    {{text}}
+  </div>
+  {% endfor %}
+{% endif %}
+<form action="{% url 'newpage' %}" method="POST">
+    {% csrf_token %}
+    <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 5px; margin-bottom: 10px;">
+    <span><span style="margin-right: 10px;">Title of Page</span>{{form.title}}</span><button>Submit</button>
+    </div>
+    <h5>Page Content</h5>
+    {{form.content}}
+    
+</form>
+{% endblock %}
